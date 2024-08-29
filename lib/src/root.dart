@@ -866,6 +866,10 @@ class Builder {
       defaultCltvExpiryDelta: 144,
       trustedPeers0Conf: [],
       probingLiquidityLimitMultiplier: BigInt.from(3),
+      anchorChannelsConfig: types.AnchorChannelsConfig(
+        trustedPeersNoReserve: [],
+        perChannelReserveSats: BigInt.from(5000),
+      ),
     ));
   }
 
@@ -886,6 +890,13 @@ class Builder {
   factory Builder.mutinynet({types.Config? config}) {
     final Builder builder =
         config != null ? Builder.fromConfig(config: config) : Builder();
+    final lspPublicKey =
+        types.PublicKey(hex: DefaultServicesMutinynet.lsps2SourcePublicKey);
+
+    builder._config!.anchorChannelsConfig = types.AnchorChannelsConfig(
+      trustedPeersNoReserve: [lspPublicKey],
+      perChannelReserveSats: BigInt.from(5000),
+    );
 
     return builder
         .setNetwork(types.Network.signet)
@@ -896,9 +907,7 @@ class Builder {
             addr: DefaultServicesMutinynet.lsps2SourceAddress,
             port: DefaultServicesMutinynet.lsps2SourcePort,
           ),
-          publicKey: types.PublicKey(
-            hex: DefaultServicesMutinynet.lsps2SourcePublicKey,
-          ),
+          publicKey: lspPublicKey,
           token: DefaultServicesMutinynet.lsps2SourceToken,
         );
   }
