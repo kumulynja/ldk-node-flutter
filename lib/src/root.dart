@@ -883,7 +883,7 @@ class Builder {
 
   /// Creates a new builder instance with default services configured for mutinynet.
   ///
-  factory Builder.mutinynet({types.Config? config}) {
+  factory Builder.mutinynet({types.Config? config, String? lsps2SourceToken}) {
     final Builder builder =
         config != null ? Builder.fromConfig(config: config) : Builder();
 
@@ -899,7 +899,7 @@ class Builder {
           publicKey: types.PublicKey(
             hex: DefaultServicesMutinynet.lsps2SourcePublicKey,
           ),
-          token: DefaultServicesMutinynet.lsps2SourceToken,
+          token: lsps2SourceToken,
         );
   }
 

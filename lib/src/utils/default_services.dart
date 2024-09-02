@@ -10,5 +10,4 @@ class DefaultServicesMutinynet {
   static const int lsps2SourcePort = 39735;
   static const String lsps2SourcePublicKey =
       '0371d6fd7d75de2d0372d03ea00e8bacdacb50c27d0eaea0a76a0622eff1f5ef2b';
-  static const String lsps2SourceToken = 'JZWN9YLW';
 }
